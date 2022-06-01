@@ -1,20 +1,29 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CodeEditorWindow from "../../components/CodeEditorWindow";
+import CustomInput from "../../components/CustomInput";
+import Footer from "../../components/Footer";
+import LanguagesDropdown from "../../components/LanguagesDropdown";
+import OutputDetails from "../../components/OutputDetails";
+import OutputWindow from "../../components/OutputWindow";
+import ThemeDropdown from "../../components/ThemeDropdown";
 
 import { javascriptDefault } from "../../constants/javascriptDefault";
 import { languageOptions } from "../../constants/languageOptions";
 import useKeyPress from "../../hooks/useKeyPress";
 import { defineTheme } from "../../lib/defineTheme";
+import { classnames } from "../../utils/general";
 
 function Ide() {
     const [code, setCode] = useState(javascriptDefault);
     const [customInput, setCustomInput] = useState("");
     const [outputDetails, setOutputDetails] = useState(null);
     const [processing, setProcessing] = useState(null);
-    const [theme, setTheme] = useState("cobalt");
+    const [theme, setTheme] = useState("");
     const [language, setLanguage] = useState(languageOptions[0]);
 
     const enterPress = useKeyPress("Enter");
@@ -56,13 +65,13 @@ function Ide() {
         };
         const options = {
             method: "POST",
-            url: process.env.REACT_APP_RAPID_API_URL,
+            url: process.env.NEXT_PUBLIC_RAPID_API_URL,
             params: { base64_encoded: "true", fields: "*" },
             headers: {
                 "content-type": "application/json",
                 "Content-Type": "application/json",
-                "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
-                "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+                "X-RapidAPI-Host": process.env.NEXT_PUBLIC_RAPID_API_HOST,
+                "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
             },
             data: formData,
         };
@@ -95,11 +104,11 @@ function Ide() {
     const checkStatus = async (token) => {
         const options = {
             method: "GET",
-            url: process.env.REACT_APP_RAPID_API_URL + "/" + token,
+            url: process.env.NEXT_PUBLIC_RAPID_API_URL + "/" + token,
             params: { base64_encoded: "true", fields: "*" },
             headers: {
-                "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
-                "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+                "X-RapidAPI-Host": process.env.NEXT_PUBLIC_RAPID_API_HOST,
+                "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
             },
         };
         try {
@@ -170,7 +179,67 @@ function Ide() {
             <Head>
                 <title>IDE</title>
             </Head>
-            <p>hello</p>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+
+            <div className="h-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
+            <div className="flex flex-row">
+                <div className="px-4 py-2">
+                    <LanguagesDropdown onSelectChange={onSelectChange} />
+                </div>
+                <div className="px-4 py-2">
+                    <ThemeDropdown
+                        handleThemeChange={handleThemeChange}
+                        theme={theme}
+                    />
+                </div>
+            </div>
+            <div className="flex flex-row space-x-4 items-start px-4 py-4">
+                <div className="flex flex-col w-full h-full justify-start items-end">
+                    <CodeEditorWindow
+                        code={code}
+                        onChange={onChange}
+                        language={language?.value}
+                        theme={theme.value}
+                    />
+                </div>
+
+                <div className="right-container flex flex-shrink-0 w-[30%] flex-col">
+                    <OutputWindow outputDetails={outputDetails} />
+                    <div className="flex flex-col items-end">
+                        <CustomInput
+                            customInput={customInput}
+                            setCustomInput={setCustomInput}
+                        />
+                        <button
+                            onClick={handleCompile}
+                            disabled={!code}
+                            className={classnames(
+                                "mt-4 border-2 border-black z-10 rounded-md  px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0",
+                                !code ? "opacity-50" : ""
+                            )}
+                        >
+                            {processing
+                                ? "Processing..."
+                                : "Compile and Execute"}
+                        </button>
+                    </div>
+                    {outputDetails && (
+                        <OutputDetails outputDetails={outputDetails} />
+                    )}
+                </div>
+            </div>
+            <Footer />
         </div>
     );
 }

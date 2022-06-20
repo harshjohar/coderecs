@@ -4,13 +4,13 @@ import axios from "axios";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import CodeEditorWindow from "../../components/CodeEditorWindow";
-import CustomInput from "../../components/CustomInput";
-import Footer from "../../components/Footer";
-import LanguagesDropdown from "../../components/LanguagesDropdown";
-import OutputDetails from "../../components/OutputDetails";
-import OutputWindow from "../../components/OutputWindow";
-import ThemeDropdown from "../../components/ThemeDropdown";
+import CodeEditorWindow from "../../components/editor/CodeEditorWindow";
+import CustomInput from "../../components/editor/CustomInput";
+import Footer from "../../components/editor/Footer";
+import LanguagesDropdown from "../../components/editor/LanguagesDropdown";
+import OutputDetails from "../../components/editor/OutputDetails";
+import OutputWindow from "../../components/editor/OutputWindow";
+import ThemeDropdown from "../../components/editor/ThemeDropdown";
 
 import { javascriptDefault } from "../../constants/javascriptDefault";
 import { languageOptions } from "../../constants/languageOptions";
@@ -191,8 +191,6 @@ function Ide() {
                 draggable
                 pauseOnHover
             />
-
-            <div className="h-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
             <div className="flex flex-row">
                 <div className="px-4 py-2">
                     <LanguagesDropdown onSelectChange={onSelectChange} />
@@ -239,7 +237,6 @@ function Ide() {
                     )}
                 </div>
             </div>
-            <Footer />
         </div>
     );
 }

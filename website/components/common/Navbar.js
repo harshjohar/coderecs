@@ -42,9 +42,11 @@ function Navbar() {
                         Hi! {user.displayName}
                     </button>
                 )}
+                <Link href={'idea'}>
                 <h3 className="cursor-pointer rounded-full px-4 py-1 hover:bg-amber-500 hover:text-black">
                     How this works?
                 </h3>
+                </Link>
             </div>
         </header>
     )

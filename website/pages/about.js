@@ -1,8 +1,13 @@
-import React from 'react'
+import Head from 'next/head'
+import PageLayout from '../components/common/Layout'
 
 function about() {
   return (
-    <div>about</div>
+    <PageLayout>
+      <Head>
+        <title>About</title>
+      </Head>
+    </PageLayout>
   )
 }
 

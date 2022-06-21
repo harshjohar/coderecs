@@ -1,8 +1,9 @@
 import React from 'react'
+import PageLayout from '../components/common/Layout'
 
 function contact() {
   return (
-    <div>contact</div>
+    <PageLayout>Contact</PageLayout>
   )
 }
 

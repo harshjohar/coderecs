@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 
 function PageLayout({ children }) {
     return (
-        <div className="h-screen w-screen overflow-hidden">
+        <div className="h-screen w-screen flex flex-col overflow-hidden">
             <Head>
                 <title>CodeRecs</title>
                 <meta
@@ -13,7 +13,7 @@ function PageLayout({ children }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Navbar />
-            {children}
+            <div className="flex-1 p-5">{children}</div>
         </div>
     )
 }

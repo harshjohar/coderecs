@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { signInWithPopup, signOut } from 'firebase/auth'
 import { auth, provider } from '../../firebase/config'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import Image from 'next/image';
+import Image from 'next/image'
 
 function Navbar() {
     const [user] = useAuthState(auth)
@@ -33,17 +33,10 @@ function Navbar() {
                         How this works?
                     </h3>
                 </Link>
-                {!user ? (
-                    <button
-                        className="cursor-pointer rounded-full px-4 py-1 hover:bg-amber-500 hover:text-black"
-                        onClick={() => signInWithPopup(auth, provider)}
-                    >
-                        Sign In
-                    </button>
-                ) : (
+                {user && (
                     <Link href={'/profile'}>
-                        <button className="cursor-pointer rounded-full px-4 py-1">
-                            <Image src={user.photoURL} height={50} width={50} objectFit={'contain'} className="rounded-full" />
+                        <button className="cursor-pointer rounded-full px-4 py-1 hover:opacity-90">
+                           {user.displayName}
                         </button>
                     </Link>
                 )}

@@ -19,7 +19,7 @@ export default function Home() {
                         </p>
                     </div>
                     <div className="p-3 w-full flex flex-col">
-                        <h1 className="text-[2.5rem] font-extrabold px-5">
+                        <h1 className="text-[2.5rem] font-bold px-5">
                             Recommended Problems
                         </h1>
                         <p className="text-xs px-5">

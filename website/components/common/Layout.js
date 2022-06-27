@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 
 function PageLayout({ children }) {
     return (
-        <div className="h-screen w-screen flex flex-col overflow-hidden">
+        <div className="h-screen w-screen flex flex-col overflow-hidden font-poppins">
             <Head>
                 <title>CodeRecs</title>
                 <meta

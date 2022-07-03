@@ -39,7 +39,7 @@ function SignIn({ change }) {
             )}
             <button
                 onClick={signIn}
-                className="mx-auto text-black font-bold cursor-pointer outline-none py-2 px-4 m-3 rounded-full text-center bg-yellow-500"
+                className="mx-auto my-8 text-black font-bold cursor-pointer outline-none py-2 px-4 m-3 rounded-full text-center bg-yellow-500"
             >
                 Sign In
             </button>

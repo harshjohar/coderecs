@@ -1,7 +1,9 @@
 scripts/SubmissionDataCollection/submissions.csv
+scripts/*/__pycache__/
 scripts/todo.txt
 model/submissions.csv
 model/preprocessing.csv
 tensorflow_model/data/
 */.ipynb_checkpoints/
-*/__pycache__/
+*/*/__pycache__/
+tensorflow_model/__pycache__/

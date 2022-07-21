@@ -4,12 +4,12 @@ import csv
 from collections import OrderedDict
 from hashing import hash
 # usernames
-f = open('output.json')
+# f = open('output.json')
 
 
-data = json.load(f)
-
-with open('submissions.csv', 'w', newline='') as file:
+# data = json.load(f)
+data = ['nanak.sachdeva']
+with open('nnk.csv', 'w', newline='') as file:
     csv_writer = csv.writer(file, delimiter=',')
     csv_writer.writerow(['username' ,'ID', 'contestId', 'index', 'OK', 'WRONG_ANSWER', 'TIME_LIMIT_EXCEEDED', 
         'COMPILATION_ERROR', 'RUNTIME_ERROR', 'IDLENESS_LIMIT_EXCEEDED', 'MEMORY_LIMIT_EXCEEDED',
@@ -18,7 +18,7 @@ with open('submissions.csv', 'w', newline='') as file:
 
     url = "https://codeforces.com/api/user.status"
     i=0
-    for user in data['names']:
+    for user in data:
         questions = OrderedDict()
         i+=1
         try:

@@ -7,3 +7,5 @@ tensorflow_model/data/
 */.ipynb_checkpoints/
 */*/__pycache__/
 tensorflow_model/__pycache__/
+*.csv
+*.pyc

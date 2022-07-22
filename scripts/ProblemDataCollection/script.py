@@ -10,6 +10,14 @@ def hash(contest, index):
         offset += ord(index[1]) - ord('0')
     return contest + offset
 
+def editTags(tags):
+    ans = ""
+    for i in tags:
+        ans+=i
+        ans+='|'
+    ans = ans[:-1]
+    return ans
+
 with open('problems.csv', 'w', newline='') as file:
     csv_writer = csv.writer(file, delimiter=',')
     csv_writer.writerow(['id', 'rating', 'tags'])
@@ -24,7 +32,7 @@ with open('problems.csv', 'w', newline='') as file:
         try:
             problemId = hash(problem['contestId'], problem['index'])
             rating = problem['rating']
-            tags = problem['tags']
+            tags = editTags(problem['tags'])
 
             problemData = [problemId, rating, tags]
             csv_writer.writerow(problemData)

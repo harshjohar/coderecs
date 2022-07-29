@@ -4,9 +4,9 @@ import Navbar from './Navbar'
 
 function Layout({children} : {children : ReactNode}) {
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden font-poppins">
+    <div className="h-screen w-screen flex flex-col scrollbar-hide font-poppins">
             <Head>
-                <title>CodeRecs</title>
+                <title>Coderecs</title>
                 <meta
                     name="description"
                     content="The coding platform, you always wanted!"

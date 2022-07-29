@@ -1,34 +1,24 @@
 import Link from 'next/link'
 import React from 'react'
 
+
 function Navbar() {
     return (
-        <header className="flex justify-between bg-green-800 px-20">
+        <header className="flex justify-between bg-coderecs-bgNav px-20 tshadow p-2">
             <div className="flex items-center space-x-20">
-                <Link href={'/'}>
-                    <img
-                        src={"/assets/images/logo.png"}
-                        alt="CodeRecs"
-                        className="w-36 cursor-pointer object-contain"
-                    />
+                <p className="text-coderecs-textLight text-[2.4rem]">Coderecs</p>
+                <div className="hidden items-center space-x-10 md:inline-flex text-coderecs-textLight">
+                    <Link href={'/about'}><p>About</p></Link>
+                    <Link href={'/contact'}><p>Contact</p></Link>
+                    <Link href={'idea'}>
+                        <button className="cursor-pointer rounded-full px-4 py-1 hover:opacity-90">
+                           How This Works
+                        </button>
                 </Link>
-                <div className="hidden items-center space-x-10 md:inline-flex text-white">
-                    <Link href={'/about'}>About</Link>
-                    <Link href={'/contact'}>Contact</Link>
-                    <Link
-                        href={'/editor/ide'}
-                        className="rounded-full bg-green-600 px-4 py-1 text-white"
-                    >
-                        IDE
-                    </Link>
                 </div>
             </div>
-            <div className="flex items-center space-x-5 text-white">
-                <Link href={'idea'}>
-                    <h3 className="hidden lg:inline-flex cursor-pointer rounded-full px-4 py-1 hover:bg-amber-500 hover:text-black">
-                        How this works?
-                    </h3>
-                </Link>
+            <div className="flex items-center space-x-5 text-coderecs-textLight">
+                
                     <Link href={'/profile'}>
                         <button className="cursor-pointer rounded-full px-4 py-1 hover:opacity-90">
                            User
